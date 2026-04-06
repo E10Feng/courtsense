@@ -1,0 +1,185 @@
+:root {
+  --bg: #f8f6f3;
+  --surface: #ffffff;
+  --primary: #2d6a4f;
+  --primary-hover: #245c44;
+  --accent: #e76f51;
+  --text: #1a1a1a;
+  --text-muted: #666;
+  --border: #ddd;
+  --badge-tennis: #3a7bd5;
+  --badge-pickleball: #f4a261;
+  --radius: 8px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.app { max-width: 600px; margin: 0 auto; padding: 0 16px 48px; }
+
+/* Header */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+header h1 { font-size: 1.4rem; color: var(--primary); }
+
+/* Nav */
+nav { display: flex; gap: 4px; }
+nav button {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  transition: all 0.15s;
+}
+nav button.active, nav button:hover {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+/* Forms */
+form { display: flex; flex-direction: column; gap: 12px; }
+input, select, textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  background: var(--surface);
+  color: var(--text);
+}
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+textarea { resize: vertical; }
+
+/* Sport toggle */
+.sport-toggle { display: flex; gap: 8px; }
+.sport-toggle button {
+  flex: 1;
+  padding: 10px;
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  cursor: pointer;
+  font-weight: 600;
+}
+.sport-toggle button.active {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: #fff;
+}
+
+/* Ratings */
+.ratings { display: flex; flex-direction: column; gap: 8px; }
+.ratings label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+.ratings input[type="range"] { flex: 1; accent-color: var(--primary); }
+
+/* Buttons */
+button[type="submit"], button:not([type]) {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+button[type="submit"]:hover, button:not([type]):hover { background: var(--primary-hover); }
+button[type="submit"]:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* Error */
+.error { color: #c0392b; font-size: 0.85rem; }
+
+/* Session cards */
+.session-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  margin-bottom: 10px;
+}
+.session-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+}
+.session-header .score { margin-left: auto; font-weight: 700; }
+.session-card .notes { font-size: 0.85rem; color: var(--text-muted); font-style: italic; margin: 6px 0; }
+.ratings-small { display: flex; gap: 12px; font-size: 0.8rem; color: var(--text-muted); }
+
+/* Sport badges */
+.sport-badge {
+  background: var(--badge-tennis);
+  color: #fff;
+  font-size: 0.7rem;
+  padding: 2px 7px;
+  border-radius: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.sport-badge.pickleball { background: var(--badge-pickleball); }
+.sport-badge-sm {
+  background: var(--badge-tennis);
+  color: #fff;
+  font-size: 0.65rem;
+  padding: 1px 6px;
+  border-radius: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.sport-badge-sm.pickleball { background: var(--badge-pickleball); }
+
+/* Digest */
+.weekly-digest h2, .session-list h2, .drill-search h2 { margin-bottom: 12px; }
+.digest-result { margin-top: 16px; }
+.weakness-summary { font-size: 0.95rem; margin-bottom: 16px; line-height: 1.6; }
+.weakness-card, .drill-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  margin-bottom: 10px;
+}
+.weakness-card strong, .drill-card strong { font-size: 0.95rem; }
+.weakness-card small, .drill-card em { font-size: 0.85rem; color: var(--text-muted); }
+.drill-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+.drill-meta { display: flex; gap: 12px; font-size: 0.8rem; color: var(--text-muted); margin-top: 6px; }
+.diff-beginner { color: #2d6a4f; }
+.diff-intermediate { color: #e76f51; }
+.diff-advanced { color: #c0392b; }
+
+/* Drill search */
+.drill-search form { display: flex; gap: 8px; flex-wrap: wrap; }
+.drill-search form input { flex: 1 1 200px; }
+.drill-search form select { flex: 0 0 auto; }
+.drill-results { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+
+/* Diff badges */
+h4 { margin: 16px 0 8px; font-size: 0.9rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }

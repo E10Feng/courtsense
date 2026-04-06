@@ -1,13 +1,10 @@
-"""
-CourtSense — FastAPI Backend Entry Point
-"""
+"""FastAPI entry point for CourtSense."""
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
-from backend.database import engine, Base
 from backend.routers import sessions, digest, drills
+from backend.database import init_db
 
-app = FastAPI(title="CourtSense API", version="1.0.0")
+app = FastAPI(title="CourtSense", version="1.0.0")
 
 app.add_middleware(
     CORSMiddleware,
@@ -23,16 +20,10 @@ app.include_router(drills.router, prefix="/drills", tags=["drills"])
 
 
 @app.on_event("startup")
-async def startup():
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
+def startup():
+    init_db()
 
 
-@app.get("/health")
-async def health():
-    return {"status": "ok"}
-
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run("backend.main:app", host="0.0.0.0", port=8000, reload=True)
+@app.get("/")
+def root():
+    return {"message": "CourtSense API — Log sessions, get your weekly breakdown."}

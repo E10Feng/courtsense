@@ -1,34 +1,29 @@
-# CHECKPOINT — CourtSense Build
+# CourtSense — Build Checkpoint
 
-## Architect: completed 2026-04-06
+**Status:** IN PROGRESS  
+**Start:** 2026-04-06 08:17 CDT  
+**Model:** minimax/MiniMax-M2.7
 
-## Current Status: BUILDING (minimax agent spawned)
+## Milestones
 
-## Spec: C:\Users\ethan\.openclaw\workspace\specs\courtsense\BUILD-SPEC.md
+- [ ] **M1:** Directory structure + requirements.txt + package.json
+- [ ] **M2:** Backend — database.py, models.py, main.py
+- [ ] **M3:** Backend — routers (sessions, digest, drills)
+- [ ] **M4:** Backend — services (session_service, digest_agent, drill_agent, embedding_service)
+- [ ] **M5:** seed_drill_data.py (standalone, complete)
+- [ ] **M6:** Frontend — App.jsx, components, api.js, index.css (styling)
+- [ ] **M7:** README.md
+- [ ] **M8:** pytest validation
 
-## Slug: courtsense
+## State (for fallback)
 
-## Key Implementation Notes
-- LLM calls route through OpenClaw/minimax integration (no external API keys needed for MiniMax)
-- OpenAI embeddings used for pgvector drill search (set OPENAI_API_KEY for embeddings, falls back to LIKE search)
-- DATABASE_URL env var required for PostgreSQL
-- Demo uses hardcoded user ID `00000000-0000-0000-0000-000000000001`
-- seed_drill_data.py must be run once before the app starts
+Current milestone: M1  
+Last completed: —  
+Next action: Create all directories and files per BUILD-SPEC.md
 
-## File Structure
-```
-backend/
-  main.py, models.py, database.py
-  routers/: sessions.py, digest.py, drills.py
-  services/: session_service.py, digest_agent.py, drill_agent.py, embedding_service.py
-frontend/
-  src/: App.jsx, api.js, main.jsx
-  components/: SessionLogger.jsx, SessionList.jsx, WeeklyDigest.jsx, DrillCard.jsx
-  index.html, vite.config.js, package.json
-seed_drill_data.py
-```
-
-## Open Issues / Next Steps
-- Build agent (minimax) is implementing the full project per BUILD-SPEC.md
-- Tests not yet written (pytest target: 8/8)
-- README is scaffolded, needs polish after build
+## Usage Limit Plan
+If CPU/usage limit hit → write current state to CHECKPOINT.md with:
+- What files exist
+- What was in progress
+- What still needs to be done
+- minimax fallback agent can resume from CHECKPOINT.md
